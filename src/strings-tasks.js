@@ -307,8 +307,16 @@ function containsSubstring(str, substring) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  const vowels = 'aeiouyAEIOUY';
+  let count = 0;
+  function checkVowel(char) {
+    if (vowels.includes(char)) {
+      count += 1;
+    }
+  }
+  str.split('').forEach(checkVowel);
+  return count;
 }
 
 /**
@@ -324,10 +332,13 @@ function countVowels(/* str */) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  const newStr = str.replace(/[\W]+/g, '').toLowerCase();
+  if (newStr === newStr.split('').reverse().join('')) {
+    return true;
+  }
+  return false;
 }
-
 /**
  * Find the longest word in the sentence. If there are multiple longest words,
  * the function returns the first one encountered.
@@ -340,10 +351,21 @@ function isPalindrome(/* str */) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
-}
+function findLongestWord(sentence) {
+  const newSent = sentence.split(' ');
 
+  let longestWrd = '';
+  let maxLength = 0;
+
+  for (let i = 0; i < newSent.length; i += 1) {
+    const word = newSent[i];
+    if (word.length > maxLength) {
+      maxLength = word.length;
+      longestWrd = word;
+    }
+  }
+  return longestWrd;
+}
 /**
  * Returns the string where each word is reversed.
  *
@@ -354,8 +376,15 @@ function findLongestWord(/* sentence */) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords(str) {
+  const newArr = str.split(' ');
+  let reversStr = '';
+  let tempStr = '';
+  for (let i = 0; i < newArr.length; i += 1) {
+    tempStr = newArr[i].split('').reverse().join('');
+    reversStr += `${tempStr} `;
+  }
+  return reversStr.trim();
 }
 
 /**
